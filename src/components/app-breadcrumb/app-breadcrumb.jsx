@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../../context/Context';
 import './app-breadcrumb.scss';
+
+const { breadcrumbLevel, setBreadcrumbLevel } = useContext(Context);
 
 function renderLevels(levels, goToView) {
   return levels.map((bread) => (
     <li key={bread}>
-      <a onClick={() => goToView(bread)}>{bread}</a>
+      <button
+        type="submit"
+        onClick={() => {
+          setBreadcrumbLevel(bread);
+          goToView(bread);
+        }}
+      >
+        {bread}
+      </button>
     </li>
   ));
 }
@@ -15,19 +26,19 @@ function renderUlContent(breadcumLevels, level, goToView) {
   return <>{renderLevels(levels, goToView)}</>;
 }
 
-export const defaultBreadcumbLevels = ['Search', 'Detail', 'Shoppingcart'];
+const defaultBreadcumbLevels = ['Search', 'Detail'];
 
-export function AppBreadcumb(props) {
-  const { level, goToView, breadcumbLevels } = props;
+export function AppBreadcrumb(props) {
+  const { goToView, breadcumbLevels } = props;
   const currentBreadcumbLevels = breadcumbLevels || defaultBreadcumbLevels;
   return (
     <div className="app-breadcumb">
       <ul className="breadcrumb">
-        {renderUlContent(currentBreadcumbLevels, level, goToView)}
-        <li>{breadcumbLevels[level]}</li>
+        {renderUlContent(currentBreadcumbLevels, breadcrumbLevel, goToView)}
+        <li>{breadcumbLevels[breadcrumbLevel]}</li>
       </ul>
     </div>
   );
 }
 
-export default AppBreadcumb;
+export default AppBreadcrumb;

@@ -1,34 +1,78 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React, { useState, useMemo } from 'react';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import { AppHeader } from './components/app-header/app-header';
+import { AppBreadcrumb } from './components/app-breadcrumb/app-breadcrumb';
+import { HEADER_EVENTS } from './components/app-header/app-header.const';
+import { Context } from './context/Context';
+import { PhonesListPage } from './pages/phones-list-page/phone-list-page';
+import { PhoneDetailsPage } from './pages/phones-details-page/phone-details-page';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const navigate = useNavigate();
+
+function headerOnClick(event) {
+  switch (event) {
+    case HEADER_EVENTS.LOGO_ICON_CLICK:
+    case HEADER_EVENTS.TITLE_CLICK:
+      navigate('/');
+      break;
+
+    default:
+      break;
+  }
+}
+
+function breadcrumbOnClick(level) {
+  switch (level) {
+    case 'Search':
+      navigate('/');
+      break;
+    default:
+      break;
+  }
+}
+
+export function App() {
+  const [count, setCount] = useState(0);
+  const [level, setLevel] = useState('Search');
+
+  const value = useMemo(
+    () => ({
+      cartItems: count,
+      addItem: setCount((c) => c + 1),
+      breadcrumbLevel: level,
+      setBreadcrumbLevel: setLevel((l) => l),
+    }),
+    [count, level],
+  );
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Context.Provider value={value}>
+        <BrowserRouter>
+          <h1>HOLA MUNDO</h1>
+          <AppHeader
+            title="The Fon shop"
+            srcLogo="/logo.png"
+            srcShoppingcart="/shoppingcart.svg"
+            headerOnClick={headerOnClick}
+          />
+          <AppBreadcrumb level={level} goToView={(bread) => breadcrumbOnClick(bread)} />
+
+          <div className="app container mt-4">
+            <div className="app-content">
+              <div className="app container">
+                <Routes>
+                  <Route path="/" element={<PhonesListPage />} />
+                  <Route path="/phone-detail/:id" element={<PhoneDetailsPage />} />
+                </Routes>
+              </div>
+            </div>
+          </div>
+        </BrowserRouter>
+      </Context.Provider>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
