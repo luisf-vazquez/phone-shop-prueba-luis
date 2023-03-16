@@ -1,14 +1,31 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { getProductList } from '../../infrastructure/api_functions/api-get-list';
 import { SearchInputBox } from '../../components/search-input-box/search-input-box';
 import { PhoneCard } from '../../components/phone-card/phone-card';
 import { Context } from '../../context/Context';
 import './phone-list-page.scss';
 
+const listElements = await getProductList().then((value) => value);
 export function PhonesListPage() {
-  const listElements = getProductList();
+  const { list, setList } = useState(listElements);
+
   const { setSelectedItemId, setBreadcrumbLevel } = useContext(Context);
-  setBreadcrumbLevel('List');
+
+  function setListBreadCrumbLevel() {
+    setBreadcrumbLevel('List');
+  }
+  setListBreadCrumbLevel();
+
+  function newSearch(searchText) {
+    if (searchText && searchText !== '') {
+      const newList = listElements.filter(
+        (product) => product.brand === searchText || product.model === searchText,
+      );
+      setList(newList);
+    } else {
+      setList(listElements);
+    }
+  }
 
   return (
     <div>
@@ -20,7 +37,7 @@ export function PhonesListPage() {
       <div className="container-flex">
         <div className="col-flex-xs-12 col-flex-sm-12 col-flex-md-12 col-flex-lg-12">
           <div className="phones-list-grid">
-            {listElements.map((product) => (
+            {list.map((product) => (
               <div
                 key={product.id}
                 className="col-flex-xs-6 col-flex-sm-6 col-flex-md-4 col-flex-lg-3"

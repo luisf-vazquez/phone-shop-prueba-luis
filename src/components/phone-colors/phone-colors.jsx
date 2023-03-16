@@ -9,7 +9,7 @@ function renderColor(color, colorSelected) {
       className="phone-color"
       style={style}
       onClick={() => {
-        colorSelected ? colorSelected(color) : null;
+        colorSelected ? colorSelected(color.code) : null;
       }}
     />
   );
@@ -17,7 +17,11 @@ function renderColor(color, colorSelected) {
 
 export function PhoneColors(props) {
   const { colors, colorSelected } = props;
-  return <div className="phone-colors-container mt-1">{colors.map((color) => renderColor(color, colorSelected))}</div>;
+  return (
+    <div className="phone-colors-container mt-1">
+      {colors?.map((color) => renderColor(color, colorSelected))}
+    </div>
+  );
 }
 
 export default PhoneColors;

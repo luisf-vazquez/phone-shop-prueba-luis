@@ -1,4 +1,4 @@
-export function postCall(url, body) {
+export async function postCall(url, body) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

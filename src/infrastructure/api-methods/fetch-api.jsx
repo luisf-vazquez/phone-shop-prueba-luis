@@ -1,7 +1,7 @@
 import moment from 'moment/moment';
 
 const peticiones = {};
-export function getWithCache(url) {
+export async function getWithCache(url) {
   const now = moment();
   if (peticiones[url] && now.diff(moment(peticiones[url].date), 'hours') > 1) {
     return Promise.resolve(peticiones[url].info);

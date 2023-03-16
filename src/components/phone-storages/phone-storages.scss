@@ -1,14 +1,13 @@
-.phone-colors-container {
+.phone-storages-container {
     display: flex;
     align-items: center;
 }
 .mt-1 {
     margin-top: 1rem;
 }
-.phone-color {
+.phone-storage {
     height: 12px;
-    width: 12px;
-    border-radius: 50%;
+    width: 24px;
     margin-right: 8px;
     box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 }

@@ -1,17 +1,21 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { getProduct } from '../../infrastructure/api_functions/api-get-item';
 import { Context } from '../../context/Context';
 import { PhoneColors } from '../../components/phone-colors/phone-colors';
+import { PhoneStorages } from '../../components/phone-storages/phone-storages';
 import { PhonePrice } from '../../components/phone-price/phone-price';
+import { postProduct } from '../../infrastructure/api_functions/api-post-item';
 import './phone-details-page.scss';
 
 export function PhoneDetailsPage() {
-  const navigate = useNavigate();
-  const { selectedItemId, addItem, cartItems, setBreadcrumbLevel } = useContext(Context);
+  // const navigate = useNavigate();
+  const { selectedItemId, addItem, setBreadcrumbLevel } = useContext(Context);
   const { selectedColor, setSelectedColor } = useState(null);
+  const { selectedStorage, setSelectedStorage } = useState(null);
   const productDetails = getProduct(selectedItemId);
   const {
+    id,
     imgUrl,
     brand,
     model,
@@ -31,10 +35,17 @@ export function PhoneDetailsPage() {
 
   setBreadcrumbLevel('Detail');
 
-  function AddToCart() {
-    addItem(cartItems);
+  async function AddToCart() {
+    const body = {
+      id,
+      colorCode: selectedColor,
+      storageCode: selectedStorage,
+    };
+    const itemCount = await postProduct(body).then((value) => value);
+    addItem(itemCount);
     setSelectedColor(null);
-    navigate('/');
+    setSelectedStorage(null);
+    // navigate('/');
   }
 
   return (
@@ -102,6 +113,15 @@ export function PhoneDetailsPage() {
               <PhoneColors
                 colors={options?.colors}
                 colorSelected={(colorOption) => setSelectedColor(colorOption)}
+              />
+            </div>
+          </div>
+          <div className="storage-selector">
+            <div className="storage-selector-text">Selecciona una capacidad de memoria</div>
+            <div className="storage-selector-options">
+              <PhoneStorages
+                storages={options?.storages}
+                storageSelected={(storageOption) => setSelectedStorage(storageOption)}
               />
             </div>
           </div>

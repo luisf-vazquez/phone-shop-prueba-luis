@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../../context/Context';
 import { HEADER_EVENTS } from './app-header.const';
 import './app-header.scss';
 
-// TODO add shoppingcarticon
 export function AppHeader(props) {
+  const { cartItems } = useContext(Context);
   const { title, srcShoppingcart, srcLogo, headerOnClick } = props;
   const { TITLE_CLICK, LOGO_ICON_CLICK } = HEADER_EVENTS;
   return (
@@ -19,8 +20,8 @@ export function AppHeader(props) {
         </h1>
       </div>
       <div className="shoppingcart-icon">
-        {num ? <div className="num-products">{num}</div> : null}
-        <img src={srcShoppingcart} alt={`The shopping cart has ${num} products`} />
+        {cartItems ? <div className="num-products">{cartItems}</div> : null}
+        <img src={srcShoppingcart} alt={`The shopping cart has ${cartItems} products`} />
       </div>
     </div>
   );

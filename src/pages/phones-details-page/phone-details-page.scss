@@ -70,10 +70,26 @@
       .color-selector {
         margin-top: 3rem;
         .color-selector-text {
-          padding-left: 3rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           font-weight: bold;
         }
         .color-selector-options {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      .storage-selector {
+        margin-top: 3rem;
+        .storage-selector-text {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+        }
+        .storage-selector-options {
           display: flex;
           align-items: center;
           justify-content: center;

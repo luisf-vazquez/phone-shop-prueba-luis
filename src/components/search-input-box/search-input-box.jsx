@@ -1,16 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './search-input-box.scss';
 
 export function SearchInputBox(props) {
   const { newSearch } = props;
   const [showClear, setShowClear] = useState(false);
   const [text, setText] = useState('');
-  const inputComponent = useRef < HTMLInputElement > null;
 
   const clearHandler = () => {
     setText('');
     setShowClear(false);
-    inputComponent.current?.focus();
     newSearch('');
   };
   const inputChange = (event) => {
@@ -36,7 +34,6 @@ export function SearchInputBox(props) {
         className="search"
         placeholder="Search"
         type="text"
-        ref={inputComponent}
         value={text}
         onChange={inputChange}
         onKeyDown={handleKeyDown}
