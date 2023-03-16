@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { getProduct } from '../../infrastructure/api_functions/api-get-item';
 import { Context } from '../../context/Context';
 import { PhoneColors } from '../../components/phone-colors/phone-colors';
 import { PhoneStorages } from '../../components/phone-storages/phone-storages';
@@ -7,16 +6,11 @@ import { PhonePrice } from '../../components/phone-price/phone-price';
 import { postProduct } from '../../infrastructure/api_functions/api-post-item';
 import './phone-details-page.scss';
 
-async function getproductDetails(id) {
-  const details = await getProduct(id).then((value) => value);
-  return details;
-}
-
 export function PhoneDetailsPage() {
-  const { selectedItemId, addItem, setBreadcrumbLevel, setSelectedItemId } = useContext(Context);
+  const { addItem, setBreadcrumbLevel, setSelectedItemId, selectedProduct } = useContext(Context);
   const { selectedColor, setSelectedColor } = useState(null);
   const { selectedStorage, setSelectedStorage } = useState(null);
-  const productDetails = getproductDetails(selectedItemId);
+  const productDetails = selectedProduct;
   const {
     id,
     imgUrl,

@@ -6,18 +6,21 @@ import { HEADER_EVENTS } from './components/app-header/app-header.const';
 import { Context } from './context/Context';
 import { PhonesListPage } from './pages/phones-list-page/phone-list-page';
 import { PhoneDetailsPage } from './pages/phones-details-page/phone-details-page';
+import { getProductDetails } from './tools/fetch-tools/fetch-tools';
 import './App.scss';
 
 export function App() {
   const [count, setCount] = useState(0);
   const [level, setLevel] = useState('List');
   const [itemId, setItemId] = useState('');
+  const [product, setProduct] = useState({});
   const navigate = useNavigate();
 
   function headerOnClick(event) {
     switch (event) {
       case HEADER_EVENTS.LOGO_ICON_CLICK:
       case HEADER_EVENTS.TITLE_CLICK:
+        setItemId('');
         navigate('/');
         break;
 
@@ -29,6 +32,7 @@ export function App() {
   function breadcrumbOnClick(bread) {
     switch (bread) {
       case 'List':
+        setItemId('');
         navigate('/');
         break;
       default:
@@ -44,14 +48,19 @@ export function App() {
       setBreadcrumbLevel: (newLevel) => setLevel(newLevel),
       selectedItemId: itemId,
       setSelectedItemId: (newitemId) => setItemId(newitemId),
+      selectedProduct: product,
     }),
     [count, level, itemId],
   );
 
   useEffect(() => {
     if (itemId && itemId !== '') {
-      navigate(`/phone-detail/${itemId}`);
+      getProductDetails(itemId).then((val) => {
+        setProduct(val);
+        navigate(`/phone-detail/${itemId}`);
+      });
     } else {
+      setProduct({});
       navigate('/');
     }
   }, [itemId]);

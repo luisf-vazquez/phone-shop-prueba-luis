@@ -25,7 +25,7 @@ export function AppBreadcrumb(props) {
           </li>
         );
       }
-      return <li>{bread}</li>;
+      return <li key={bread}>{bread}</li>;
     });
   }
 

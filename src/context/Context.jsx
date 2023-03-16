@@ -7,6 +7,7 @@ export const Context = createContext({
   setBreadcrumbLevel: () => {},
   selectedItemId: '',
   setSelectedItemId: () => {},
+  selectedProduct: {},
 });
 
 export default Context;

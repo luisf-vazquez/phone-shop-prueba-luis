@@ -20,7 +20,8 @@ export function PhonesListPage() {
   const newSearch = (searchText) => {
     if (searchText && searchText !== '') {
       const newList = listElements.filter(
-        (product) => product.brand === searchText || product.model === searchText,
+        (product) =>
+          product.brand === searchText || product.model === searchText,
       );
       setList(newList);
     } else {
@@ -43,7 +44,10 @@ export function PhonesListPage() {
                 key={product.id}
                 className="col-flex-xs-6 col-flex-sm-6 col-flex-md-4 col-flex-lg-3"
               >
-                <PhoneCard product={product} selected={(id) => setSelectedItemId(id)} />
+                <PhoneCard
+                  product={product}
+                  selected={(id) => setSelectedItemId(id)}
+                />
               </div>
             ))}
           </div>
