@@ -26,7 +26,7 @@ function renderUlContent(breadcumLevels, level, goToView) {
   return <>{renderLevels(levels, goToView)}</>;
 }
 
-const defaultBreadcumbLevels = ['Search', 'Detail'];
+const defaultBreadcumbLevels = ['List', 'Detail'];
 
 export function AppBreadcrumb(props) {
   const { goToView, breadcumbLevels } = props;

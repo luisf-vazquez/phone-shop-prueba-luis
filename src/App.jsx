@@ -6,7 +6,7 @@ import { HEADER_EVENTS } from './components/app-header/app-header.const';
 import { Context } from './context/Context';
 import { PhonesListPage } from './pages/phones-list-page/phone-list-page';
 import { PhoneDetailsPage } from './pages/phones-details-page/phone-details-page';
-import './App.css';
+import './App.scss';
 
 const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ function headerOnClick(event) {
 
 function breadcrumbOnClick(level) {
   switch (level) {
-    case 'Search':
+    case 'List':
       navigate('/');
       break;
     default:
@@ -34,7 +34,7 @@ function breadcrumbOnClick(level) {
 
 export function App() {
   const [count, setCount] = useState(0);
-  const [level, setLevel] = useState('Search');
+  const [level, setLevel] = useState('List');
   const [itemId, setItemId] = useState('');
 
   const value = useMemo(

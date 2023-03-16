@@ -3,7 +3,7 @@ import { createContext } from 'react';
 export const Context = createContext({
   cartItems: 0,
   addItem: () => {},
-  breadcrumbLevel: 'Search',
+  breadcrumbLevel: '',
   setBreadcrumbLevel: () => {},
   selectedItemId: '',
   setSelectedItemId: () => {},

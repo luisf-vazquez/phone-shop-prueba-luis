@@ -8,7 +8,7 @@ import './phone-list-page.scss';
 export function PhonesListPage() {
   const listElements = getProductList();
   const { setSelectedItemId, setBreadcrumbLevel } = useContext(Context);
-  setBreadcrumbLevel('Search');
+  setBreadcrumbLevel('List');
 
   return (
     <div>

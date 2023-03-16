@@ -4,6 +4,7 @@ import { getProduct } from '../../infrastructure/api_functions/api-get-item';
 import { Context } from '../../context/Context';
 import { PhoneColors } from '../../components/phone-colors/phone-colors';
 import { PhonePrice } from '../../components/phone-price/phone-price';
+import './phone-details-page.scss';
 
 export function PhoneDetailsPage() {
   const navigate = useNavigate();
