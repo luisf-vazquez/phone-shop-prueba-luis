@@ -10,7 +10,7 @@ function renderColor(color, colorSelect, selectedColor) {
       className={'button-container'.concat(selectedColor === color.code ? ' button-selected' : '')}
       style={style}
       onClick={() => {
-        colorSelect ? colorSelect(color.code) : null;
+        colorSelect(color.code);
       }}
     >
       <div key={color.code} className="phone-color" style={style} />
