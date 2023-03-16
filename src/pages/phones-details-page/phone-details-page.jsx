@@ -8,8 +8,8 @@ import './phone-details-page.scss';
 
 export function PhoneDetailsPage() {
   const { addItem, setBreadcrumbLevel, setSelectedItemId, selectedProduct } = useContext(Context);
-  const { selectedColor, setSelectedColor } = useState(null);
-  const { selectedStorage, setSelectedStorage } = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedStorage, setSelectedStorage] = useState(null);
   const productDetails = selectedProduct;
   const {
     id,
@@ -111,7 +111,8 @@ export function PhoneDetailsPage() {
             <div className="color-selector-options">
               <PhoneColors
                 colors={options?.colors}
-                colorSelected={(colorOption) => setSelectedColor(colorOption)}
+                colorSelect={(colorOption) => setSelectedColor(colorOption)}
+                selectedColor={selectedColor}
               />
             </div>
           </div>
@@ -120,13 +121,18 @@ export function PhoneDetailsPage() {
             <div className="storage-selector-options">
               <PhoneStorages
                 storages={options?.storages}
-                storageSelected={(storageOption) => setSelectedStorage(storageOption)}
+                storageSelect={(storageOption) => setSelectedStorage(storageOption)}
+                selectedStorage={selectedStorage}
               />
             </div>
           </div>
           <PhonePrice price={price} />
           <div>
-            <button type="button" disabled={!selectedColor} onClick={AddToCart()}>
+            <button
+              type="button"
+              disabled={!selectedColor || !selectedStorage}
+              onClick={AddToCart()}
+            >
               Añadir al Carrito
             </button>
           </div>

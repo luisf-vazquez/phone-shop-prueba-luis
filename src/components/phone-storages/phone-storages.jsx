@@ -1,13 +1,14 @@
 import React from 'react';
 import './phone-storages.scss';
 
-function renderStorage(storage, storageSelected) {
+function renderStorage(storage, storageSelect, selectedStorage) {
   return (
     <button
+      key={storage.code}
       type="button"
-      className="phone-storage"
+      className={'phone-storage'.concat(selectedStorage === storage.code ? ' selected' : '')}
       onClick={() => {
-        storageSelected(storage.code);
+        storageSelect(storage.code);
       }}
     >
       {storage.name}
@@ -16,10 +17,10 @@ function renderStorage(storage, storageSelected) {
 }
 
 export function PhoneStorages(props) {
-  const { storages, storageSelected } = props;
+  const { storages, storageSelect, selectedStorage } = props;
   return (
     <div className="phone-colors-container mt-1">
-      {storages?.map((storage) => renderStorage(storage, storageSelected))}
+      {storages?.map((storage) => renderStorage(storage, storageSelect, selectedStorage))}
     </div>
   );
 }
