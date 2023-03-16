@@ -50,7 +50,7 @@ export function App() {
       setSelectedItemId: (newitemId) => setItemId(newitemId),
       selectedProduct: product,
     }),
-    [count, level, itemId],
+    [count, level, itemId, product],
   );
 
   useEffect(() => {

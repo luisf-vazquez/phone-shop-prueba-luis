@@ -4,7 +4,7 @@ export async function postCall(url, body) {
     headers: { 'Content-Type': 'application/json' },
     body,
   };
-  fetch(url, requestOptions)
+  return fetch(url, requestOptions)
     .then((response) => response.json())
     .then((data) => data);
 }

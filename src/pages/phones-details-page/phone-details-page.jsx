@@ -39,7 +39,7 @@ export function PhoneDetailsPage() {
         colorCode: selectedColor,
         storageCode: selectedStorage,
       };
-      const itemCount = await postProduct(body).then((value) => value);
+      const itemCount = await postProduct(body).then((value) => value.count);
       addItem(itemCount);
       setSelectedColor(null);
       setSelectedStorage(null);
@@ -128,11 +128,7 @@ export function PhoneDetailsPage() {
           </div>
           <PhonePrice price={price} />
           <div>
-            <button
-              type="button"
-              disabled={!selectedColor || !selectedStorage}
-              onClick={AddToCart()}
-            >
+            <button type="button" disabled={!selectedColor || !selectedStorage} onClick={AddToCart}>
               Añadir al Carrito
             </button>
           </div>
