@@ -15,6 +15,9 @@ export function SearchInputBox(props) {
     const { value } = event.currentTarget;
     setText(value);
     setShowClear(!!value);
+    if (value.length === 0 || value.length > 3) {
+      newSearch(value);
+    }
   };
 
   const handleKeyDown = (event) => {
