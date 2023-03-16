@@ -4,14 +4,6 @@ import './phone-colors.scss';
 function renderColor(color, colorSelect, selectedColor) {
   const style = { backgroundColor: color.name };
   return (
-    // <div
-    //   key={color.code}
-    //   className={'phone-color'.concat(selectedColor === color.code ? ' selected' : '')}
-    //   style={style}
-    //   onClick={() => {
-    //     colorSelect ? colorSelect(color.code) : null;
-    //   }}
-    // />
     <button
       type="button"
       key={color.code}

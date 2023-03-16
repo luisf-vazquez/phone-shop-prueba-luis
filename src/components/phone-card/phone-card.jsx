@@ -1,4 +1,5 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { PhonePrice } from '../phone-price/phone-price';
 import './phone-card.scss';
 
@@ -11,7 +12,13 @@ export function PhoneCard(props) {
   return (
     <article className="phone-card" onClick={() => selected(id)}>
       <div className="image-container">
-        <img src={imgSrc} alt={alt} title={model} />
+        <LazyLoadImage
+          alt={alt}
+          effect="blur"
+          src={imgSrc}
+          title={model}
+          placeholderSrc="./spinner.gif"
+        />
       </div>
       <div className="description-container">
         <div className="upper-text">

@@ -9,7 +9,8 @@
         height: 164px;
         overflow: hidden;
         position: relative;
-        background-color: var(--theme-color-background-content-fill-default);
+        background-color: var(--theme-color-white);
+        border: 3px solid var(--theme-color-primary);
         display: flex;
         align-items: center;
         justify-content: center;

@@ -1,13 +1,16 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { AppHeader } from './components/app-header/app-header';
-import { AppBreadcrumb } from './components/app-breadcrumb/app-breadcrumb';
+// import { AppHeader } from './components/app-header/app-header';
+// import { AppBreadcrumb } from './components/app-breadcrumb/app-breadcrumb';
 import { HEADER_EVENTS } from './components/app-header/app-header.const';
 import { Context } from './context/Context';
-import { PhonesListPage } from './pages/phones-list-page/phone-list-page';
-import { PhoneDetailsPage } from './pages/phones-details-page/phone-details-page';
 import { getProductDetails } from './tools/fetch-tools/fetch-tools';
 import './App.scss';
+
+const PhonesListPage = React.lazy(() => import('./pages/phones-list-page/phone-list-page'));
+const PhoneDetailsPage = React.lazy(() => import('./pages/phones-details-page/phone-details-page'));
+const AppHeader = React.lazy(() => import('./components/app-header/app-header'));
+const AppBreadcrumb = React.lazy(() => import('./components/app-breadcrumb/app-breadcrumb'));
 
 export function App() {
   const [count, setCount] = useState(0);
@@ -67,26 +70,34 @@ export function App() {
 
   return (
     <div className="App">
-      <Context.Provider value={value}>
-        <AppHeader
-          title="The Fon shop"
-          srcLogo="/logo.png"
-          srcShoppingcart="/shoppingcart.svg"
-          headerOnClick={(event) => headerOnClick(event)}
-        />
-        <AppBreadcrumb goToView={(bread) => breadcrumbOnClick(bread)} />
+      <Suspense
+        fallback={
+          <div className="waiting-spinner">
+            <img src="/spinner.gif" alt="loading ..." />
+          </div>
+        }
+      >
+        <Context.Provider value={value}>
+          <AppHeader
+            title="The Fon shop"
+            srcLogo="/logo.png"
+            srcShoppingcart="/shoppingcart.svg"
+            headerOnClick={(event) => headerOnClick(event)}
+          />
+          <AppBreadcrumb goToView={(bread) => breadcrumbOnClick(bread)} />
 
-        <div className="app container mt-4">
-          <div className="app-content">
-            <div className="app container">
-              <Routes>
-                <Route path="/" element={<PhonesListPage />} />
-                <Route path="/phone-detail/:itemId" element={<PhoneDetailsPage />} />
-              </Routes>
+          <div className="app container mt-4">
+            <div className="app-content">
+              <div className="app container">
+                <Routes>
+                  <Route path="/" element={<PhonesListPage />} />
+                  <Route path="/phone-detail/:itemId" element={<PhoneDetailsPage />} />
+                </Routes>
+              </div>
             </div>
           </div>
-        </div>
-      </Context.Provider>
+        </Context.Provider>
+      </Suspense>
     </div>
   );
 }
