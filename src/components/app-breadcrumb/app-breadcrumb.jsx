@@ -3,36 +3,43 @@ import { Context } from '../../context/Context';
 import './app-breadcrumb.scss';
 
 export function AppBreadcrumb(props) {
-  const { goToView, breadcumbLevels } = props;
+  const { goToView } = props;
   const { breadcrumbLevel, setBreadcrumbLevel } = useContext(Context);
   const defaultBreadcumbLevels = ['List', 'Detail'];
-  const currentBreadcumbLevels = breadcumbLevels || defaultBreadcumbLevels;
+  const currentBreadcumbLevels = defaultBreadcumbLevels;
 
   function renderLevels(levels) {
-    return levels.map((bread) => (
-      <li key={bread}>
-        <button
-          type="submit"
-          onClick={() => {
-            setBreadcrumbLevel(bread);
-            goToView(bread);
-          }}
-        >
-          {bread}
-        </button>
-      </li>
-    ));
+    return levels.map((bread) => {
+      if (bread !== breadcrumbLevel) {
+        return (
+          <li key={bread}>
+            <button
+              type="button"
+              onClick={() => {
+                setBreadcrumbLevel(bread);
+                goToView(bread);
+              }}
+            >
+              {bread}
+            </button>
+          </li>
+        );
+      }
+      return <li>{bread}</li>;
+    });
   }
 
-  function renderUlContent(breadcumLevels, level) {
+  function renderUlContent(breadcumLevels) {
     const levels = [...breadcumLevels];
-    levels.splice(level);
-    return <>{renderLevels(levels, goToView)}</>;
+    const level = breadcrumbLevel === 'List' ? 1 : 2;
+    levels.splice(level, 1);
+    return <>{renderLevels(levels)}</>;
   }
+
   return (
     <div className="app-breadcumb">
       <ul className="breadcrumb">
-        {renderUlContent(currentBreadcumbLevels, breadcrumbLevel)}
+        {renderUlContent(currentBreadcumbLevels)}
         <li>{currentBreadcumbLevels[breadcrumbLevel]}</li>
       </ul>
     </div>

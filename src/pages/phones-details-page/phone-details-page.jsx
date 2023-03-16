@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import { getProduct } from '../../infrastructure/api_functions/api-get-item';
 import { Context } from '../../context/Context';
 import { PhoneColors } from '../../components/phone-colors/phone-colors';
@@ -8,12 +7,16 @@ import { PhonePrice } from '../../components/phone-price/phone-price';
 import { postProduct } from '../../infrastructure/api_functions/api-post-item';
 import './phone-details-page.scss';
 
+async function getproductDetails(id) {
+  const details = await getProduct(id).then((value) => value);
+  return details;
+}
+
 export function PhoneDetailsPage() {
-  // const navigate = useNavigate();
-  const { selectedItemId, addItem, setBreadcrumbLevel } = useContext(Context);
+  const { selectedItemId, addItem, setBreadcrumbLevel, setSelectedItemId } = useContext(Context);
   const { selectedColor, setSelectedColor } = useState(null);
   const { selectedStorage, setSelectedStorage } = useState(null);
-  const productDetails = getProduct(selectedItemId);
+  const productDetails = getproductDetails(selectedItemId);
   const {
     id,
     imgUrl,
@@ -36,16 +39,18 @@ export function PhoneDetailsPage() {
   setBreadcrumbLevel('Detail');
 
   async function AddToCart() {
-    const body = {
-      id,
-      colorCode: selectedColor,
-      storageCode: selectedStorage,
-    };
-    const itemCount = await postProduct(body).then((value) => value);
-    addItem(itemCount);
-    setSelectedColor(null);
-    setSelectedStorage(null);
-    // navigate('/');
+    if (selectedColor && selectedColor !== '' && selectedStorage && selectedStorage !== '') {
+      const body = {
+        id,
+        colorCode: selectedColor,
+        storageCode: selectedStorage,
+      };
+      const itemCount = await postProduct(body).then((value) => value);
+      addItem(itemCount);
+      setSelectedColor(null);
+      setSelectedStorage(null);
+      setSelectedItemId(null);
+    }
   }
 
   return (

@@ -5,8 +5,8 @@ export function PhonePrice(props) {
   const { price } = props;
   return (
     <div className="lower-text">
-      <p className="small">Desde</p>
-      <h5>{price}</h5>
+      <p className="small">Precio</p>
+      <h5>{price ? `${price}€` : 'Consultar cuota'}</h5>
     </div>
   );
 }

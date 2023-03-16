@@ -7,7 +7,8 @@ import './phone-list-page.scss';
 
 const listElements = await getProductList().then((value) => value);
 export function PhonesListPage() {
-  const { list, setList } = useState(listElements);
+  const defaultElements = { ...listElements };
+  const { list, setList } = useState(defaultElements);
 
   const { setSelectedItemId, setBreadcrumbLevel } = useContext(Context);
 
@@ -16,16 +17,16 @@ export function PhonesListPage() {
   }
   setListBreadCrumbLevel();
 
-  function newSearch(searchText) {
+  const newSearch = (searchText) => {
     if (searchText && searchText !== '') {
       const newList = listElements.filter(
         (product) => product.brand === searchText || product.model === searchText,
       );
       setList(newList);
     } else {
-      setList(listElements);
+      setList(defaultElements);
     }
-  }
+  };
 
   return (
     <div>
@@ -37,7 +38,7 @@ export function PhonesListPage() {
       <div className="container-flex">
         <div className="col-flex-xs-12 col-flex-sm-12 col-flex-md-12 col-flex-lg-12">
           <div className="phones-list-grid">
-            {list.map((product) => (
+            {listElements.map((product) => (
               <div
                 key={product.id}
                 className="col-flex-xs-6 col-flex-sm-6 col-flex-md-4 col-flex-lg-3"

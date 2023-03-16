@@ -19,7 +19,7 @@ export function PhoneStorages(props) {
   const { storages, storageSelected } = props;
   return (
     <div className="phone-colors-container mt-1">
-      {storages.map((storage) => renderStorage(storage, storageSelected))}
+      {storages?.map((storage) => renderStorage(storage, storageSelected))}
     </div>
   );
 }
