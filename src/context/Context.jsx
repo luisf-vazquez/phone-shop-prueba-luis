@@ -5,6 +5,8 @@ export const Context = createContext({
   addItem: () => {},
   breadcrumbLevel: 'Search',
   setBreadcrumbLevel: () => {},
+  selectedItemId: '',
+  setSelectedItemId: () => {},
 });
 
 export default Context;

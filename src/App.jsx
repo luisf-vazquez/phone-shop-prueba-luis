@@ -35,6 +35,7 @@ function breadcrumbOnClick(level) {
 export function App() {
   const [count, setCount] = useState(0);
   const [level, setLevel] = useState('Search');
+  const [itemId, setItemId] = useState('');
 
   const value = useMemo(
     () => ({
@@ -42,8 +43,10 @@ export function App() {
       addItem: setCount((c) => c + 1),
       breadcrumbLevel: level,
       setBreadcrumbLevel: setLevel((l) => l),
+      selectedItemId: itemId,
+      setSelectedItemId: setItemId((id) => id),
     }),
-    [count, level],
+    [count, level, itemId],
   );
 
   return (

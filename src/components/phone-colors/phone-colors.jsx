@@ -2,14 +2,10 @@ import React from 'react';
 import './phone-colors.scss';
 
 function renderColor(color, colorSelected) {
-  if (!color?.code) {
-    return null;
-  }
-  const style = { backgroundColor: color.code };
+  const style = { backgroundColor: color };
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
-      key={color.code}
+      key={color}
       className="phone-color"
       style={style}
       onClick={() => {
