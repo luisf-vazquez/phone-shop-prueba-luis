@@ -1,14 +1,20 @@
 import React from 'react';
 import './phone-storages.scss';
 
+let isSelected = false;
 function renderStorage(storage, storageSelect, selectedStorage) {
   return (
     <button
       key={storage.code}
       type="button"
-      className={'phone-storage'.concat(selectedStorage === storage.code ? ' selected' : '')}
+      className={'button-storage'.concat(selectedStorage === storage.code ? ' selected' : '')}
       onClick={() => {
-        storageSelect(storage.code);
+        isSelected = !isSelected;
+        if (selectedStorage === storage.code) {
+          storageSelect(null);
+        } else {
+          storageSelect(storage.code);
+        }
       }}
     >
       {storage.name}

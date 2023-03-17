@@ -50,8 +50,21 @@ export function PhoneDetailsPage() {
   return (
     <article className="phone-detail-view">
       <div className="container-flex">
-        <div className="image-container col-flex-xs-12 col-flex-sm-4 col-flex-md-4 col-flex-lg-3">
-          <img src={imgUrl} alt={`${brand} ${model}`} title={model} />
+        <div className="col-flex-xs-12 col-flex-sm-4 col-flex-md-4 col-flex-lg-3">
+          <div className="image-container col-flex-xs-12 col-flex-sm-12 col-flex-md-12 col-flex-lg-12">
+            <img src={imgUrl} alt={`${brand} ${model}`} title={model} />
+          </div>
+          <PhonePrice price={price} big />
+          <div className="carrito-container col-flex-xs-12 col-flex-sm-12 col-flex-md-12 col-flex-lg-12">
+            <button
+              type="button"
+              disabled={!selectedColor || !selectedStorage}
+              onClick={AddToCart}
+              className="button-carrito"
+            >
+              Añadir al Carrito
+            </button>
+          </div>
         </div>
         <div className="description-container col-flex-xs-12 col-flex-sm-8 col-flex-md-8 col-flex-lg-9">
           <div className="upper-text">
@@ -125,12 +138,6 @@ export function PhoneDetailsPage() {
                 selectedStorage={selectedStorage}
               />
             </div>
-          </div>
-          <PhonePrice price={price} />
-          <div>
-            <button type="button" disabled={!selectedColor || !selectedStorage} onClick={AddToCart}>
-              Añadir al Carrito
-            </button>
           </div>
         </div>
       </div>

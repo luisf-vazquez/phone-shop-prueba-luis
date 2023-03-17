@@ -3,3 +3,13 @@ p {
     line-height: 1.8rem;
     letter-spacing: -1px;
 }
+
+.price-big-container{
+    padding-top: 2rem;
+    .price-big-label{
+        font-size: 2rem;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+}
