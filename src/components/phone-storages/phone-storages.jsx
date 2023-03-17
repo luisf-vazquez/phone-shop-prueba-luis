@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './phone-storages.scss';
 
 let isSelected = false;
-function renderStorage(storage, storageSelect, selectedStorage) {
+function renderStorage(storage, selectStorage, selectedStorage) {
   return (
     <button
       key={storage.code}
@@ -11,9 +12,9 @@ function renderStorage(storage, storageSelect, selectedStorage) {
       onClick={() => {
         isSelected = !isSelected;
         if (selectedStorage === storage.code) {
-          storageSelect(null);
+          selectStorage(null);
         } else {
-          storageSelect(storage.code);
+          selectStorage(storage.code);
         }
       }}
     >
@@ -23,12 +24,17 @@ function renderStorage(storage, storageSelect, selectedStorage) {
 }
 
 export function PhoneStorages(props) {
-  const { storages, storageSelect, selectedStorage } = props;
+  const { storages, selectStorage, selectedStorage } = props;
   return (
     <div className="phone-colors-container mt-1">
-      {storages?.map((storage) => renderStorage(storage, storageSelect, selectedStorage))}
+      {storages?.map((storage) => renderStorage(storage, selectStorage, selectedStorage))}
     </div>
   );
 }
+
+PhoneStorages.PropTypes = {
+  price: PropTypes.string,
+  big: PropTypes.bool,
+};
 
 export default PhoneStorages;

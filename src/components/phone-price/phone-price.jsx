@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './phone-price.scss';
 
 export function PhonePrice(props) {
@@ -23,5 +24,10 @@ export function PhonePrice(props) {
 
   return big ? renderBig() : renderSmall();
 }
+
+PhonePrice.PropTypes = {
+  price: PropTypes.string,
+  big: PropTypes.bool,
+};
 
 export default PhonePrice;

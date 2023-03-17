@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './phone-colors.scss';
 
-function renderColor(color, colorSelect, selectedColor) {
+function renderColor(color, selectColor, selectedColor) {
   const style = { backgroundColor: color.name };
   return (
     <button
@@ -10,7 +11,7 @@ function renderColor(color, colorSelect, selectedColor) {
       className={'button-container'.concat(selectedColor === color.code ? ' button-selected' : '')}
       style={style}
       onClick={() => {
-        colorSelect(color.code);
+        selectColor(color.code);
       }}
     >
       <div key={color.code} className="phone-color" style={style} />
@@ -19,12 +20,18 @@ function renderColor(color, colorSelect, selectedColor) {
 }
 
 export function PhoneColors(props) {
-  const { colors, colorSelect, selectedColor } = props;
+  const { colors, selectColor, selectedColor } = props;
   return (
     <div className="phone-colors-container mt-1">
-      {colors?.map((color) => renderColor(color, colorSelect, selectedColor))}
+      {colors?.map((color) => renderColor(color, selectColor, selectedColor))}
     </div>
   );
 }
+
+PhoneColors.PropTypes = {
+  colors: PropTypes.array.isRequired,
+  selectColor: PropTypes.func.isRequired,
+  selectedColor: PropTypes.string,
+};
 
 export default PhoneColors;

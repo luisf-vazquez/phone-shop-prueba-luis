@@ -52,7 +52,7 @@ export function PhoneDetailsPage() {
       <div className="container-flex">
         <div className="col-flex-xs-12 col-flex-sm-4 col-flex-md-4 col-flex-lg-3">
           <div className="image-container col-flex-xs-12 col-flex-sm-12 col-flex-md-12 col-flex-lg-12">
-            <img src={imgUrl} alt={`${brand} ${model}`} title={model} />
+            <img src={imgUrl} alt={`${brand} ${model}`} title={model} loading="lazy" />
           </div>
           <PhonePrice price={price} big />
           <div className="carrito-container col-flex-xs-12 col-flex-sm-12 col-flex-md-12 col-flex-lg-12">
@@ -124,7 +124,7 @@ export function PhoneDetailsPage() {
             <div className="color-selector-options">
               <PhoneColors
                 colors={options?.colors}
-                colorSelect={(colorOption) => setSelectedColor(colorOption)}
+                selectColor={(colorOption) => setSelectedColor(colorOption)}
                 selectedColor={selectedColor}
               />
             </div>
@@ -134,7 +134,7 @@ export function PhoneDetailsPage() {
             <div className="storage-selector-options">
               <PhoneStorages
                 storages={options?.storages}
-                storageSelect={(storageOption) => setSelectedStorage(storageOption)}
+                selectStorage={(storageOption) => setSelectedStorage(storageOption)}
                 selectedStorage={selectedStorage}
               />
             </div>

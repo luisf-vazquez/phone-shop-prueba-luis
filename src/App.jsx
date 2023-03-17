@@ -73,7 +73,7 @@ export function App() {
       <Suspense
         fallback={
           <div className="waiting-spinner">
-            <img src="/spinner.gif" alt="loading ..." />
+            <img src="/spinner.gif" alt="loading ..." loading="lazy" />
           </div>
         }
       >
