@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { getProductList } from '../../infrastructure/api_functions/api-get-list';
-import { SearchInputBox } from '../../components/search-input-box/search-input-box';
-import { PhoneCard } from '../../components/phone-card/phone-card';
-import { Context } from '../../context/Context';
+import { getProductList } from '../../infrastructure/api_functions/api-get-list.js';
+import { SearchInputBox } from '../../components/search-input-box/search-input-box.jsx';
+import { PhoneCard } from '../../components/phone-card/phone-card.jsx';
+import { Context } from '../../context/Context.jsx';
 import './phone-list-page.scss';
 
 const listElements = await getProductList().then((value) => value);

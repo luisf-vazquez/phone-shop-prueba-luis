@@ -56,7 +56,7 @@ export function SearchInputBox(props) {
   );
 }
 
-SearchInputBox.PropTypes = {
+SearchInputBox.propTypes = {
   newSearch: PropTypes.func.isRequired,
 };
 

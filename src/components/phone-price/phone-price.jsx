@@ -25,7 +25,7 @@ export function PhonePrice(props) {
   return big ? renderBig() : renderSmall();
 }
 
-PhonePrice.PropTypes = {
+PhonePrice.propTypes = {
   price: PropTypes.string,
   big: PropTypes.bool,
 };

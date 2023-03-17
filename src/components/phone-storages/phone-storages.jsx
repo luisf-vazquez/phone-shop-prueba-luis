@@ -32,9 +32,12 @@ export function PhoneStorages(props) {
   );
 }
 
-PhoneStorages.PropTypes = {
-  price: PropTypes.string,
-  big: PropTypes.bool,
+PhoneStorages.propTypes = {
+  storages: PropTypes.arrayOf(
+    PropTypes.shape({ name: PropTypes.string.isRequired, code: PropTypes.number.isrequired }),
+  ).isRequired,
+  selectStorage: PropTypes.func.isRequired,
+  selectedStorage: PropTypes.string.isRequired,
 };
 
 export default PhoneStorages;

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Context } from '../../context/Context';
+import { Context } from '../../context/Context.jsx';
 import './app-breadcrumb.scss';
 
 export function AppBreadcrumb(props) {
@@ -47,7 +47,7 @@ export function AppBreadcrumb(props) {
   );
 }
 
-AppBreadcrumb.PropTypes = {
+AppBreadcrumb.propTypes = {
   goToView: PropTypes.func.isRequired,
 };
 

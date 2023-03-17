@@ -28,10 +28,12 @@ export function PhoneColors(props) {
   );
 }
 
-PhoneColors.PropTypes = {
-  colors: PropTypes.array.isRequired,
+PhoneColors.propTypes = {
+  colors: PropTypes.arrayOf(
+    PropTypes.shape({ name: PropTypes.string.isRequired, code: PropTypes.number.isrequired }),
+  ).isRequired,
   selectColor: PropTypes.func.isRequired,
-  selectedColor: PropTypes.string,
+  selectedColor: PropTypes.string.isRequired,
 };
 
 export default PhoneColors;

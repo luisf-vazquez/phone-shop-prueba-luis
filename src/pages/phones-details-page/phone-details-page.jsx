@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { Context } from '../../context/Context';
-import { PhoneColors } from '../../components/phone-colors/phone-colors';
-import { PhoneStorages } from '../../components/phone-storages/phone-storages';
-import { PhonePrice } from '../../components/phone-price/phone-price';
-import { postProduct } from '../../infrastructure/api_functions/api-post-item';
+import { Context } from '../../context/Context.jsx';
+import { PhoneColors } from '../../components/phone-colors/phone-colors.jsx';
+import { PhoneStorages } from '../../components/phone-storages/phone-storages.jsx';
+import { PhonePrice } from '../../components/phone-price/phone-price.jsx';
+import { postProduct } from '../../infrastructure/api_functions/api-post-item.js';
 import './phone-details-page.scss';
 
 export function PhoneDetailsPage() {

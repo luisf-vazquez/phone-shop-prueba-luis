@@ -6,7 +6,10 @@ export async function postCall(url, body) {
   };
   return fetch(url, requestOptions)
     .then((response) => response.json())
-    .then((data) => data);
+    .then((data) => data)
+    .catch(() => {
+      throw Error('Algo ha ido mal, inténtelo de nuevo en unos minutos');
+    });
 }
 
 export default postCall;

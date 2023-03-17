@@ -11,6 +11,9 @@ export async function getWithCache(url) {
     .then((info) => {
       peticiones[url] = { time: moment.now(), info };
       return info;
+    })
+    .catch(() => {
+      throw Error('Algo ha ido mal, inténtelo de nuevo en unos minutos');
     });
 }
 

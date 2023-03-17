@@ -2,27 +2,19 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    'jest': true,
+    jest: true,
     'jest/globals': true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'plugin:jest/recommended',
-    'airbnb',
-    'prettier',
-  ],
-  overrides: [
-  ],
+  extends: ['plugin:react/recommended', 'plugin:jest/recommended', 'airbnb'],
+  overrides: [],
   parserOptions: {
-    'ecmaFeatures': {
-      'jsx': true,
+    ecmaFeatures: {
+      jsx: true,
     },
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react', 'jest',
-  ],
+  plugins: ['react', 'jest'],
   rules: {
     'react/prop-types': 'off',
     'import/no-extraneous-dependencies': 'off',
@@ -31,9 +23,9 @@ module.exports = {
       'error',
       'ignorePackages',
       {
-          'js': 'always',
-          'jsx': 'always'
-      }
-  ]
+        js: 'always',
+        jsx: 'always',
+      },
+    ],
   },
 };

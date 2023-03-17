@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { PhonePrice } from '../phone-price/phone-price';
+import { PhonePrice } from '../phone-price/phone-price.jsx';
 import './phone-card.scss';
 
 export function PhoneCard(props) {
@@ -13,7 +12,7 @@ export function PhoneCard(props) {
   return (
     <article className="phone-card" onClick={() => setSelectedItemIdToNavigate(id)}>
       <div className="image-container">
-        <img alt={alt} src={imgSrc} title={model} loading="lazy"></img>
+        <img alt={alt} src={imgSrc} title={model} loading="lazy" />
       </div>
       <div className="description-container">
         <div className="upper-text">
@@ -26,8 +25,14 @@ export function PhoneCard(props) {
   );
 }
 
-PhoneCard.PropTypes = {
-  product: PropTypes.object.isRequired,
+PhoneCard.propTypes = {
+  product: PropTypes.shape({
+    brand: PropTypes.string.isRequired,
+    model: PropTypes.string.isRequired,
+    imgUrl: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    price: PropTypes.string.isRequired,
+  }).isRequired,
   setSelectedItemIdToNavigate: PropTypes.func.isRequired,
 };
 
